@@ -19,6 +19,14 @@ class CurrencyConverter extends React.Component {
     return amount * rate;
   }
 
+  convert(amout, rate, equation) {
+    const input = parseFloat(amount);
+    if (Number.isNaN(input)) {
+      return '';
+    }
+    return equation(input, rate).toFixed(3);
+  }
+
   handleUsdChange(event) {
     const input = parseFloat(event.target.value);
     if (Number.isNaN(input)) {
