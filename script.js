@@ -8,6 +8,7 @@ class CurrencyConverter extends React.Component {
     };
 
     this.handleUsdChange = this.handleUsdChange.bind(this);
+    this.handleEuroChange = this.handleEuroChange.bind(this);
   }
 
   toUsd(amount, rate) {
@@ -33,6 +34,24 @@ class CurrencyConverter extends React.Component {
     this.setState({
       usd: input,
       euro,
+    });
+  }
+
+  handleEuroChange(event) {
+    const input = parseFloat(event.target.value);
+    if (Number.isNaN(input)) {
+      this.setState({
+        usd: '',
+        euro: '',
+      });
+
+      return;
+    }
+
+    const usd = this.toUsd(input, this.state.rate).toFixed(3);
+    this.setState({
+      euro: input,
+      usd,
     });
   }
 
